@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E4270381C9707B3003752D3 /* kings_cake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4270371C9707B3003752D3 /* kings_cake.cpp */; };
 		3E7F32C21C902BC700E855F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F32C11C902BC700E855F9 /* main.cpp */; };
 		3E7F32CB1C902C5D00E855F9 /* array_algo_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F32C91C902C5D00E855F9 /* array_algo_test.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E4270371C9707B3003752D3 /* kings_cake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kings_cake.cpp; path = hdoj/kings_cake.cpp; sourceTree = "<group>"; };
 		3E7F32BE1C902BC700E855F9 /* cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cpp; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7F32C11C902BC700E855F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3E7F32C91C902C5D00E855F9 /* array_algo_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = array_algo_test.cpp; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E4270341C970761003752D3 /* hdoj */ = {
+			isa = PBXGroup;
+			children = (
+				3E4270371C9707B3003752D3 /* kings_cake.cpp */,
+			);
+			name = hdoj;
+			sourceTree = "<group>";
+		};
 		3E7F32B51C902BC700E855F9 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		3E7F32C01C902BC700E855F9 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				3E4270341C970761003752D3 /* hdoj */,
 				3E7F32CC1C902F4A00E855F9 /* include */,
 				3E7F32C81C902C2E00E855F9 /* array_algo */,
 				3E7F32C11C902BC700E855F9 /* main.cpp */,
@@ -331,6 +342,7 @@
 			files = (
 				3E7F32CB1C902C5D00E855F9 /* array_algo_test.cpp in Sources */,
 				3E7F32C21C902BC700E855F9 /* main.cpp in Sources */,
+				3E4270381C9707B3003752D3 /* kings_cake.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +461,7 @@
 				3E7F32C71C902BC700E855F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
