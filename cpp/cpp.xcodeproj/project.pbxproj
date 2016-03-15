@@ -10,6 +10,7 @@
 		3E4270381C9707B3003752D3 /* kings_cake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4270371C9707B3003752D3 /* kings_cake.cpp */; };
 		3E7F32C21C902BC700E855F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F32C11C902BC700E855F9 /* main.cpp */; };
 		3E7F32CB1C902C5D00E855F9 /* array_algo_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F32C91C902C5D00E855F9 /* array_algo_test.cpp */; };
+		3EBF41DD1C9821F800254660 /* string_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF41DB1C9821F800254660 /* string_algorithm.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +98,8 @@
 		3E7F33151C902F4A00E855F9 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
 		3E7F33161C902F4A00E855F9 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
 		3E7F33171C902F4A00E855F9 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		3EBF41DB1C9821F800254660 /* string_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_algorithm.cpp; sourceTree = "<group>"; };
+		3EBF41DC1C9821F800254660 /* string_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_algorithm.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,7 @@
 		3E7F32C01C902BC700E855F9 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				3EBF41DA1C9821F800254660 /* string */,
 				3E4270341C970761003752D3 /* hdoj */,
 				3E7F32CC1C902F4A00E855F9 /* include */,
 				3E7F32C81C902C2E00E855F9 /* array_algo */,
@@ -284,6 +288,15 @@
 			path = msinttypes;
 			sourceTree = "<group>";
 		};
+		3EBF41DA1C9821F800254660 /* string */ = {
+			isa = PBXGroup;
+			children = (
+				3EBF41DB1C9821F800254660 /* string_algorithm.cpp */,
+				3EBF41DC1C9821F800254660 /* string_algorithm.h */,
+			);
+			path = string;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,6 +355,7 @@
 			files = (
 				3E7F32CB1C902C5D00E855F9 /* array_algo_test.cpp in Sources */,
 				3E7F32C21C902BC700E855F9 /* main.cpp in Sources */,
+				3EBF41DD1C9821F800254660 /* string_algorithm.cpp in Sources */,
 				3E4270381C9707B3003752D3 /* kings_cake.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +445,8 @@
 		3E7F32C61C902BC700E855F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "\"$(SRC_ROOT)/cpp/include\"";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRC_ROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
