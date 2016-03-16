@@ -1,5 +1,6 @@
 #include "string_algorithm.h"
 #include <algorithm>
+#include <bitset>
 
 NS_BEGIN(elloop);
 NS_BEGIN(string_algorithm);
@@ -14,12 +15,14 @@ StringAlgoSolution::~StringAlgoSolution()
 
 void StringAlgoSolution::run()
 {
-    std::string sa("hello");
-    std::string sb("hel");
+    std::string sa("abcdsdfadfasvdfefgz");
+    std::string sb("efgafadfvcbz");
     
     std::cout << std::boolalpha;
     // psln(string_contain_stupid(sa, sb));
-    psln(string_contain_binary_search(sa, sb));
+    // psln(string_contain_binary_search(sa, sb));
+    // psln(string_contain_hash(sa, sb));
+    psln(string_contain_bit_flag(sa, sb));
 }
 
 bool StringAlgoSolution::string_contain_stupid(const std::string &sa, const std::string &sb) const
@@ -72,7 +75,7 @@ bool StringAlgoSolution::string_contain_binary_search(std::string &sa, const std
     // O(nlogn)
     std::sort(sa.begin(), sa.end());
 
-    // O(nlogn)
+    // O(n) * O(logn)
     for (size_t i=0; i<sb.size(); ++i ) 
     {
         if (-1 == binary_search_in_string(sa, sb[i])) 
@@ -81,6 +84,80 @@ bool StringAlgoSolution::string_contain_binary_search(std::string &sa, const std
         }
     }
     return true;
+}
+
+bool StringAlgoSolution::string_contain_hash(const std::string &sa, const std::string &sb) const
+{
+    // space O(k) k = non-repeat char set. for example, ASCII 0~127 is enough for visible chars.
+    int hash_table[128];
+    memset(hash_table, 0, 128 * sizeof(int));
+
+    // O(n) create hash table for sa.
+    for (size_t i=0; i<sa.size(); ++i) 
+    {
+        hash_table[sa[i]] = 1;
+    }
+
+    // O(m), find sb[i] in hash table.
+    for (size_t i=0; i<sb.size(); ++i) 
+    {
+        if (0 == hash_table[sb[i]])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool StringAlgoSolution::string_contain_bit_flag(const std::string &sa, const std::string &sb) const
+{
+    // bitset O(1) space
+    std::bitset<128> flags;         // 000...0
+
+    // O(n) time
+    for (size_t i=0; i<sa.size(); ++i) 
+    {
+        flags.set(sa[i], 1);
+    }
+
+    // O(m) time
+    for (size_t i=0; i<sb.size(); ++i) 
+    {
+        if (!flags.test(sb[i]))
+        {
+            return false;
+        }
+    }
+
+    return true;
+    
+    
+    
+    
+    
+    // space O(1), integer bit flag as hash.
+    
+    /*
+     // int128_t flag(0);    // if 128 bit integer is supported.
+     // int32_t flag(0);
+     
+     
+     // O(n)
+     for (size_t i=0; i<sa.size(); ++i)
+     {
+     flag |= ( 1 << sa[i]);
+     }
+     
+     // O(m)
+     for (size_t i=0; i<sb.size(); ++i)
+     {
+     if (! (flag & (1 << sb[i])) )
+     {
+     return false;
+     }
+     }
+     */
+
 }
 
 NS_END(string_algorithm);
