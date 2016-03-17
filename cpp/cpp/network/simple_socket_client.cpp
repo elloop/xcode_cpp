@@ -26,10 +26,16 @@ SimpleSocketClient::~SimpleSocketClient()
 
 void SimpleSocketClient::start(int argc, char **argv)
 {
+    /*
     int     socket_fd;
     struct  sockaddr_in server_address;
     char    send_line[4096];
 
+    if (argc < 2) 
+    {
+        pln("wrong arg");
+        exit(0);
+    }
     
     if ((socket_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
     {
@@ -67,6 +73,7 @@ void SimpleSocketClient::start(int argc, char **argv)
     close(socket_fd);
     
     exit(0);
+     */
 }
 
 NS_END(network);

@@ -25,6 +25,7 @@ SimpleSocketServer::~SimpleSocketServer()
 
 void SimpleSocketServer::start(int argc, char **argv)
 {
+    /*
     int     listenfd;
     int     connfd;
     struct  sockaddr_in server_address;
@@ -54,7 +55,7 @@ void SimpleSocketServer::start(int argc, char **argv)
     {
         if (-1 == (connfd = accept(listenfd, (struct sockaddr*)nullptr, nullptr)))
         {
-            printf("accept socket error: %s, errno: %d\n", strerror(errno), errno);
+//            printf("accept socket error: %s, errno: %d\n", strerror(errno), errno);
             continue;
         }
         n = recv(connfd, buff, MAXLINE, 0);
@@ -64,6 +65,7 @@ void SimpleSocketServer::start(int argc, char **argv)
     }
     
     close(listenfd);
+     */
 }
 
 NS_END(network);
