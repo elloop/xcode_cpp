@@ -1,4 +1,7 @@
-#include <iostream>
+#include "inc.h"
+
+NS_BEGIN(elloop);
+NS_BEGIN(hdoj);
 
 using namespace std;
 
@@ -18,16 +21,18 @@ int cut(int m, int n)
     }
 }
 
-void test()
+BEGIN_TEST(hdoj, kingscake, @@);
+int t;
+cin >> t;
+
+int m,n;
+while (t--)
 {
-    
-    int t ;
-    cin >> t;
-    
-    int m,n;
-    while (t--)
-    {
-        cin >> m >> n;
-        cout << cut(m, n) << endl;
-    }
+    cin >> m >> n;
+    cout << cut(m, n) << endl;
 }
+END_TEST;
+    
+
+NS_END(hdoj);
+NS_END(elloop);

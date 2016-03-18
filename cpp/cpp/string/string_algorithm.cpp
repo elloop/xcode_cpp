@@ -1,31 +1,13 @@
-#include "string_algorithm.h"
+#include "inc.h"
 #include <algorithm>
 #include <bitset>
 
 NS_BEGIN(elloop);
 NS_BEGIN(string_algorithm);
 
-StringAlgoSolution::StringAlgoSolution()
-{
-}
 
-StringAlgoSolution::~StringAlgoSolution()
-{
-}
 
-void StringAlgoSolution::run()
-{
-    std::string sa("abcdsdfadfasvdfefgz");
-    std::string sb("efgafadfvcbz");
-    
-    std::cout << std::boolalpha;
-    // psln(string_contain_stupid(sa, sb));
-    // psln(string_contain_binary_search(sa, sb));
-    // psln(string_contain_hash(sa, sb));
-    psln(string_contain_bit_flag(sa, sb));
-}
-
-bool StringAlgoSolution::string_contain_stupid(const std::string &sa, const std::string &sb) const
+bool string_contain_stupid(const std::string &sa, const std::string &sb)
 {
     for (size_t i=0; i<sb.size(); ++i)
     {
@@ -70,7 +52,7 @@ int binary_search_in_string(const std::string &s, char c)
     return -1;
 }
 
-bool StringAlgoSolution::string_contain_binary_search(std::string &sa, const std::string &sb) const
+bool string_contain_binary_search(std::string &sa, const std::string &sb)
 {
     // O(nlogn)
     std::sort(sa.begin(), sa.end());
@@ -86,7 +68,7 @@ bool StringAlgoSolution::string_contain_binary_search(std::string &sa, const std
     return true;
 }
 
-bool StringAlgoSolution::string_contain_hash(const std::string &sa, const std::string &sb) const
+bool string_contain_hash(const std::string &sa, const std::string &sb)
 {
     // space O(k) k = non-repeat char set. for example, ASCII 0~127 is enough for visible chars.
     int hash_table[128];
@@ -109,7 +91,7 @@ bool StringAlgoSolution::string_contain_hash(const std::string &sa, const std::s
     return true;
 }
 
-bool StringAlgoSolution::string_contain_bit_flag(const std::string &sa, const std::string &sb) const
+bool string_contain_bit_flag(const std::string &sa, const std::string &sb)
 {
     // bitset O(1) space
     std::bitset<128> flags;         // 000...0
@@ -159,6 +141,24 @@ bool StringAlgoSolution::string_contain_bit_flag(const std::string &sa, const st
      */
 
 }
+
+void run()
+{
+    std::string sa("abcdsdfadfasvdfefgz");
+    std::string sb("efgafadfvcbz");
+    
+    std::cout << std::boolalpha;
+    // psln(string_contain_stupid(sa, sb));
+    // psln(string_contain_binary_search(sa, sb));
+    // psln(string_contain_hash(sa, sb));
+    psln(string_contain_bit_flag(sa, sb));
+}
+
+RUN_GTEST(string_algo, StringContain, @@);
+
+run();
+
+END_TEST;
 
 NS_END(string_algorithm);
 NS_END(elloop);
