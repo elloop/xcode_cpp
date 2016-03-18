@@ -154,7 +154,7 @@ void run()
     psln(string_contain_bit_flag(sa, sb));
 }
 
-RUN_GTEST(string_algo, StringContain, @@);
+BEGIN_TEST(string_algo, StringContain, @@);
 
 run();
 
