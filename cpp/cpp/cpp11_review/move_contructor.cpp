@@ -77,6 +77,9 @@ public:
 
     ~UseMoveCtr()
     {
+        if (ptr) {
+            delete ptr;
+        }
         LOGD("dtr: %d\n", ++s_dtr);
     }
 
@@ -84,8 +87,9 @@ public:
     {
         LOGD("cptr: %d\n", ++s_cptr);
     }
-    UseMoveCtr(UseMoveCtr && moved)
+    UseMoveCtr(UseMoveCtr && moved) : ptr(moved.ptr)
     {
+        moved.ptr = nullptr;
         LOGD("mctr: %d\n", ++s_mctr);
     }
 
@@ -105,7 +109,11 @@ int UseMoveCtr::s_mctr = 0;
 
 UseMoveCtr getTempUse()
 {
-    return UseMoveCtr();
+    UseMoveCtr t;
+
+    std::cout << "address in: " << __func__ << " is: " << std::hex << t.ptr << std::endl;
+
+    return t;
     // ctr 1 : construct temp
     // mctr 1 : move construct temp by moving from temp
     // dtr 1 : delete temp
@@ -114,6 +122,7 @@ UseMoveCtr getTempUse()
 RUN_GTEST(Cpp11Review, UseMoveConstructor, @);
 
 UseMoveCtr a = getTempUse();
+std::cout << "address in: " << __func__ << " is " << std::hex << a.ptr << std::endl;
 // mctr 2: move contruct a by moving from return value.
 // dtr 2 : delete return value.
 // dtr 3 : delete a.
