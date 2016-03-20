@@ -21,6 +21,7 @@
 		3E9CA4DC1C9BDF73005DE4E1 /* gtest.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA4D31C9BDF73005DE4E1 /* gtest.cc */; };
 		3E9CA4E01C9C07A0005DE4E1 /* move_contructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA4DF1C9C07A0005DE4E1 /* move_contructor.cpp */; };
 		3EBF41DD1C9821F800254660 /* string_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF41DB1C9821F800254660 /* string_algorithm.cpp */; };
+		3EF8F1C11C9E7D5900AD7034 /* heap_sort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8F1C01C9E7D5900AD7034 /* heap_sort.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,6 +122,7 @@
 		3E9CA4D31C9BDF73005DE4E1 /* gtest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gtest.cc; sourceTree = "<group>"; };
 		3E9CA4DF1C9C07A0005DE4E1 /* move_contructor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = move_contructor.cpp; sourceTree = "<group>"; };
 		3EBF41DB1C9821F800254660 /* string_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_algorithm.cpp; sourceTree = "<group>"; };
+		3EF8F1C01C9E7D5900AD7034 /* heap_sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = heap_sort.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 		3E7F32C01C902BC700E855F9 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				3EF8F1BF1C9E7D5900AD7034 /* heap */,
 				3E9CA4DE1C9C07A0005DE4E1 /* cpp11_review */,
 				3E9CA4CA1C9BDF73005DE4E1 /* src */,
 				3E0496E81C996E2F0000A3A0 /* network */,
@@ -353,6 +356,14 @@
 			path = string;
 			sourceTree = "<group>";
 		};
+		3EF8F1BF1C9E7D5900AD7034 /* heap */ = {
+			isa = PBXGroup;
+			children = (
+				3EF8F1C01C9E7D5900AD7034 /* heap_sort.cpp */,
+			);
+			path = heap;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -415,6 +426,7 @@
 				3E9CA4D71C9BDF73005DE4E1 /* gtest-filepath.cc in Sources */,
 				3E9CA4DC1C9BDF73005DE4E1 /* gtest.cc in Sources */,
 				3E9CA4D81C9BDF73005DE4E1 /* gtest-port.cc in Sources */,
+				3EF8F1C11C9E7D5900AD7034 /* heap_sort.cpp in Sources */,
 				3EBF41DD1C9821F800254660 /* string_algorithm.cpp in Sources */,
 				3E4270381C9707B3003752D3 /* kings_cake.cpp in Sources */,
 				3E0496EB1C996E2F0000A3A0 /* simple_socket_app.cpp in Sources */,

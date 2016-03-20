@@ -52,7 +52,7 @@ HasPtrMem getTemp()
     // dtr 1 : release temp value.
 }
 
-RUN_GTEST(Cpp11Review, CopyConsume, @@);
+BEGIN_TEST(Cpp11Review, CopyConsume, @@);
 
 HasPtrMem a = getTemp();
 // cptr 2 : from return value to a.
@@ -119,7 +119,7 @@ UseMoveCtr getTempUse()
     // dtr 1 : delete temp
 }
 
-RUN_GTEST(Cpp11Review, UseMoveConstructor, @);
+BEGIN_TEST(Cpp11Review, UseMoveConstructor, @);
 
 UseMoveCtr a = getTempUse();
 std::cout << "address in: " << __func__ << " is " << std::hex << a.ptr << std::endl;
