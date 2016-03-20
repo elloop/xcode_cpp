@@ -40,6 +40,7 @@ void print_heap(elem_t *heap, size_t n)
 
 void ensure_heap(elem_t *heap, size_t root, size_t n)
 {
+    pcln("in ensure");
     size_t smaller_index = root;
     size_t left_child = 2 * (root + 1) - 1;
     size_t right_child = 2 * (root + 1);
@@ -57,6 +58,8 @@ void ensure_heap(elem_t *heap, size_t root, size_t n)
         }
 
         std::swap(heap[root], heap[smaller_index]);
+        pln("sub");
+        print_heap(heap, n);
 
         if (smaller_index == root) 
         {
@@ -66,6 +69,7 @@ void ensure_heap(elem_t *heap, size_t root, size_t n)
         left_child = 2 * (root + 1) - 1;
         right_child = 2 * (root + 1);
     }
+    pcln("end ensure");
 }
 
 void make_heap(elem_t *heap, size_t n)
@@ -81,6 +85,18 @@ void make_heap(elem_t *heap, size_t n)
     }
 }
 
+void heap_sort(elem_t *heap, size_t n)
+{
+    make_heap(heap, n);
+    size_t last = n - 1;
+
+    while (last > 0) 
+    {
+        std::swap(heap[0], heap[last]);
+        make_heap(heap, last);
+        --last;
+    }
+}
 
 void print_heap_array(elem_t *heap, size_t n)
 {
@@ -103,6 +119,16 @@ pcln("ajust");
 make_heap(heap, N);
 
 print_heap(heap, N); cr;
+
+pcln("begin of heap sort");
+pcln("begin of heap sort");
+pcln("begin of heap sort");
+heap_sort(heap, N);
+pcln("end of heap sort");
+pcln("end of heap sort");
+pcln("end of heap sort");
+
+print_heap_array(heap, N);
 
 END_TEST;
 
