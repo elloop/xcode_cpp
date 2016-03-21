@@ -74,6 +74,18 @@ void print_array(const T (& a)[N]) {
   std::cout << ")" << std::endl;
 }
 
+template <typename T, size_t N>
+void print_array_reverse(const T (& a)[N]) {
+  std::cout << "length:" << N << ", (";
+  for (int i=N-1; i>=0; --i) {
+    std::cout << a[i];
+    if (i > 0) {
+      std::cout << ", ";
+    }
+  }
+  std::cout << ")" << std::endl;
+}
+
 template <typename Con>
 void printContainer(const Con & c, const std::string& opt = "") {
     if (!opt.empty()) {

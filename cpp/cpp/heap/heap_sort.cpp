@@ -17,7 +17,7 @@ void print_spaces(size_t count)
 }
 
 // print heap as a binary tree.
-void print_heap(elem_t *heap, size_t n)
+void print_heap_tree(elem_t *heap, size_t n)
 {
     const int CONSOLE_WIDTH = 96;
 
@@ -40,7 +40,6 @@ void print_heap(elem_t *heap, size_t n)
 
 void ensure_heap(elem_t *heap, size_t root, size_t n)
 {
-    pcln("in ensure");
     size_t smaller_index = root;
     size_t left_child = 2 * (root + 1) - 1;
     size_t right_child = 2 * (root + 1);
@@ -58,8 +57,6 @@ void ensure_heap(elem_t *heap, size_t root, size_t n)
         }
 
         std::swap(heap[root], heap[smaller_index]);
-        pln("sub");
-        print_heap(heap, n);
 
         if (smaller_index == root) 
         {
@@ -69,19 +66,13 @@ void ensure_heap(elem_t *heap, size_t root, size_t n)
         left_child = 2 * (root + 1) - 1;
         right_child = 2 * (root + 1);
     }
-    pcln("end ensure");
 }
 
 void make_heap(elem_t *heap, size_t n)
 {
-    // 1. array[n]
-    // 2. adjust from n/2-1 to 0.
-    //
-    for (int i=n/2 - 1; i>=0; --i) 
+    for (int i=n/2 - 1; i>=0; --i)
     {
-        LOGD("make heap at position: %d, elem: %d\n", n/2, heap[i]);
         ensure_heap(heap, i, n);
-        print_heap(heap, n);
     }
 }
 
@@ -98,27 +89,20 @@ void heap_sort(elem_t *heap, size_t n)
     }
 }
 
-void print_heap_array(elem_t *heap, size_t n)
-{
-    for (size_t i=0; i<n; ++i) 
-    {
-        p(heap[i]); p(" ");
-    }
-}
 
-RUN_GTEST(HeapTest, MakeHeap, @@);
+BEGIN_TEST(HeapTest, MakeHeap, @@);
 
 elem_t heap[N] = {49, 38, 65, 97, 76, 13, 27, 49};
 
-print_heap_array(heap, N); cr;
+print_array(heap);
 
-print_heap(heap, N); cr;
+print_heap_tree(heap, N); cr;
 
 pcln("ajust");
 
 make_heap(heap, N);
 
-print_heap(heap, N); cr;
+print_heap_tree(heap, N); cr;
 
 pcln("begin of heap sort");
 pcln("begin of heap sort");
@@ -128,7 +112,7 @@ pcln("end of heap sort");
 pcln("end of heap sort");
 pcln("end of heap sort");
 
-print_heap_array(heap, N);
+print_array_reverse(heap);
 
 END_TEST;
 
