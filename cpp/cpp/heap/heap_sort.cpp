@@ -116,6 +116,36 @@ print_array_reverse(heap);
 
 END_TEST;
 
+// ========================= use stl heap ==========================
+RUN_GTEST(HeapTest, stlheap, @@);
+
+int myints[] = {9, 38, 65, 97, 76, 13, 27, 49};
+int len = ARRAY_LEN(myints);
+std::vector<int> v(myints,myints+len);
+
+std::make_heap (v.begin(),v.end());
+std::cout << "initial max heap   : " << v.front() << '\n';
+
+//std::pop_heap (v.begin(),v.end());
+//v.pop_back();
+//printContainer(v);
+//std::cout << "max heap after pop : " << v.front() << '\n';
+
+v.push_back(99);
+//std::push_heap (v.begin(),v.end());
+std::make_heap(v.begin(), v.end());
+std::cout << "max heap after push: " << v.front() << '\n';
+
+std::sort_heap (v.begin(),v.end());
+
+pln("final sorted range :");
+for (unsigned i=0; i<v.size(); i++)
+{
+    p(" "); p(v[i]);
+}
+
+
+END_TEST;
 
 NS_END(heap);
 NS_END(elloop);
