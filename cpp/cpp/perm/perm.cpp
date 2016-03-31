@@ -27,7 +27,7 @@ void perm_string(string& s, size_t begin, size_t end)
     }
 }
 
-string insertToString(string str, int pos,  char c) 
+string insertToString(string str, size_t pos,  char c)
 {
    string temp(str.substr(0, pos));
    temp.append(1, c);
@@ -50,8 +50,8 @@ void new_perm()
         for ( auto & str: temp ) 
         {
             // how long a string is.
-            int length = str.size();
-            for (int j=0; j<length+1; ++j) 
+            size_t length = str.size();
+            for (size_t j=0; j<length+1; ++j)
             {
                 v.push_back(insertToString(str, j, src[i]));
             }
@@ -66,7 +66,7 @@ void new_perm()
     }
 }
 
-RUN_GTEST(Perm, t, @@);
+BEGIN_TEST(Perm, t, @@);
 
 
 //clock_t begin = clock();
