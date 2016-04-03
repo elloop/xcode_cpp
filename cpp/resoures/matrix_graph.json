@@ -1,0 +1,26 @@
+{
+    "type": "UDN",
+    "vexs":
+    [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+    ],
+    "arcs":
+    [
+        {"from": "v1", "to": "v2", "weight":1},
+        {"from": "v1", "to": "v3", "weight":1},
+        {"from": "v2", "to": "v4", "weight":1},
+        {"from": "v2", "to": "v5", "weight":1},
+        {"from": "v3", "to": "v6", "weight":1},
+        {"from": "v3", "to": "v7", "weight":1},
+        {"from": "v4", "to": "v8", "weight":1},
+        {"from": "v5", "to": "v8", "weight":1},
+        {"from": "v6", "to": "v7", "weight":1}
+    ]
+}

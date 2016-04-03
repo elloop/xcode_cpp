@@ -32,7 +32,7 @@ void quick_sort(int *a, size_t low, size_t high)
 // ========================= binary_search ==========================
 bool myfunction (int i,int j) { return (i<j); }
 
-RUN_GTEST(SortAlgorithm, binarySearch, @@);
+BEGIN_TEST(SortAlgorithm, binarySearch, @@);
 
 int myints[] = {1,2,3,4,5,4,3,2,1};
 std::vector<int> v(myints,myints+9);                         // 1 2 3 4 5 4 3 2 1
@@ -54,7 +54,7 @@ if (std::binary_search (v.begin(), v.end(), 6, myfunction))
 END_TEST;
 
 
-RUN_GTEST(SortAlgorithm, QuickSort, @@);
+BEGIN_TEST(SortAlgorithm, QuickSort, @@);
 
 int a[] = {9, 1, 2, 10, 34, 3, 5, 20};
 

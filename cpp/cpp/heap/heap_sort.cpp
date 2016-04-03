@@ -117,7 +117,7 @@ print_array_reverse(heap);
 END_TEST;
 
 // ========================= use stl heap ==========================
-RUN_GTEST(HeapTest, stlheap, @@);
+BEGIN_TEST(HeapTest, stlheap, @@);
 
 int myints[] = {9, 38, 65, 97, 76, 13, 27, 49};
 int len = ARRAY_LEN(myints);
