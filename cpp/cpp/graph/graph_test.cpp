@@ -1,4 +1,6 @@
 #include "inc.h"
+#include <vector>
+#include <string>
 #include "rapidjson.h"
 #include "rapidjson/document.h"
 #include "rapidjson/reader.h"
@@ -68,7 +70,8 @@ void    print_matrix_graph(const MGraph& g);
 
 // traverse graph.
 typedef std::function<void(const VertexType& v)> visit_func_t;
-void    deep_first_search(const MGraph& g, const visit_func_t& visit_func);
+void    deep_first_search(const MGraph& g, size_t begin_index, vector<bool> &visited, const visit_func_t& visit_func);
+void    breadth_first_search(const MGraph& g, size_t begin_index, vector<bool> &visited, const visit_func_t& visit_func);
 size_t  first_adj(const MGraph &g, size_t vex_index);
 size_t  next_adj(const MGraph &g, size_t vex_index, size_t current_adj);
 
@@ -96,29 +99,24 @@ int create_matrix_graph(MGraph &g, const VexCollection &vexs, const ArcCollectio
     return -1;
 }
 
-int create_matrix_graph_UDN(MGraph &g, const VexCollection &vexs, const ArcCollection &arcs)
-{
+int create_matrix_graph_UDN(MGraph &g, const VexCollection &vexs, const ArcCollection &arcs) {
     g.vex_num = vexs.size();
     g.arc_num = arcs.size();
 
     // read vex.
-    for (size_t i=0; i<g.vex_num; ++i)
-    {
+    for (size_t i=0; i<g.vex_num; ++i) {
         g.vexs[i] = vexs[i];
     }
 
     // init arcs.
-    for (size_t i=0; i<Max_Vertext_Num; ++i) 
-    {
-        for (size_t j=0; j<Max_Vertext_Num; ++j) 
-        {
+    for (size_t i=0; i<Max_Vertext_Num; ++i) {
+        for (size_t j=0; j<Max_Vertext_Num; ++j) {
             g.arcs[i][j] = {INF, nullptr};
         }
     }
 
     // create arcs.
-    for (size_t i=0; i<g.arc_num; ++i) 
-    {
+    for (size_t i=0; i<g.arc_num; ++i) {
         VertexType from = std::get<0>(arcs[i]);
         VertexType to   = std::get<1>(arcs[i]);
         VRType w        = std::get<2>(arcs[i]);
@@ -132,8 +130,7 @@ int create_matrix_graph_UDN(MGraph &g, const VexCollection &vexs, const ArcColle
     return 0;
 }
 
-size_t locate_matrix_vertex(const MGraph& g, const VertexType& v)
-{
+size_t locate_matrix_vertex(const MGraph& g, const VertexType& v) {
     for (size_t i=0; i<g.vex_num; ++i) 
     {
         if (g.vexs[i] == v) 
@@ -144,26 +141,20 @@ size_t locate_matrix_vertex(const MGraph& g, const VertexType& v)
     return g.vex_num;  // index out of range.
 }
 
-void print_matrix_graph(const MGraph& g)
-{
+void print_matrix_graph(const MGraph& g) {
     p("/\t");
-    for (size_t i=0; i<g.vex_num; ++i) 
-    {
+    for (size_t i=0; i<g.vex_num; ++i) {
         p(g.vexs[i]); p("\t");
     }
     cr;
 
-    for (size_t i=0; i<g.vex_num; ++i) 
-    {
+    for (size_t i=0; i<g.vex_num; ++i) {
         p(g.vexs[i]); p("\t");
-        for (size_t j=0; j<g.vex_num; ++j) 
-        {
-            if (g.arcs[i][j].adj == INF)
-            {
+        for (size_t j=0; j<g.vex_num; ++j) {
+            if (g.arcs[i][j].adj == INF) {
                 p("n\t");
             }
-            else
-            {
+            else {
                 p(g.arcs[i][j].adj); p("\t");
             }
         }
@@ -172,8 +163,7 @@ void print_matrix_graph(const MGraph& g)
 }
 
 template <typename T>
-T smart_convert(const rapidjson::GenericValue<rapidjson::UTF8<>>& v)
-{
+T smart_convert(const rapidjson::GenericValue<rapidjson::UTF8<>>& v) {
     return T();
     /*
     size_t type_code = typeid(T).hash_code();
@@ -197,33 +187,28 @@ T smart_convert(const rapidjson::GenericValue<rapidjson::UTF8<>>& v)
 }
 
 template <>
-int smart_convert<int>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v)
-{
+int smart_convert<int>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v) {
     return v.GetInt();
 }
 
 template <>
-string smart_convert<string>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v)
-{
+string smart_convert<string>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v) {
     return v.GetString();
 }
 
 template <>
-double smart_convert<double>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v)
-{
+double smart_convert<double>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v) {
     return v.GetDouble();
 }
 
 
 template <>
-bool smart_convert<bool>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v)
-{
+bool smart_convert<bool>(const rapidjson::GenericValue<rapidjson::UTF8<>> &v) {
     return v.GetBool();
 }
 
 
-MGraph* alloc_graph_using_json(const string& file_name)
-{
+MGraph* alloc_graph_using_json(const string& file_name) {
     
     using namespace rapidjson;
     unsigned long size(0);
@@ -306,8 +291,7 @@ size_t next_adj(const MGraph &g, size_t vex_index, size_t current_adj) {
     return g.vex_num;
 }
 
-void deep_first_search(const MGraph& g, size_t begin_index, vector<bool> &visited, const visit_func_t& visit_func)
-{
+void deep_first_search(const MGraph& g, size_t begin_index, vector<bool> &visited, const visit_func_t& visit_func) {
     if (!visited[begin_index]) {
         visit_func(g.vexs[begin_index]);
         visited[begin_index] = true;
@@ -317,6 +301,11 @@ void deep_first_search(const MGraph& g, size_t begin_index, vector<bool> &visite
     }
     
 }
+
+void    breadth_first_search(const MGraph& g, size_t begin_index, vector<bool> &visited, const visit_func_t& visit_func) {
+
+}
+
 // ============================================================================
 //
 // Test.
@@ -329,14 +318,18 @@ auto mg = alloc_graph_using_json("matrix_graph.json");
 if (mg) {
     print_matrix_graph(*mg);
     
-    // traverse
+    // deep first iterate.
     vector<bool> visited(mg->vex_num);
     cout << boolalpha;
     printContainer(visited, "visited: ");
     auto visit_func = [](const VertexType &v) { p(v); p(" "); };
-    deep_first_search(*mg, 0, visited, visit_func);
+    // iterate for every single vex, otherwise will not reach all vexs if the graph is not a connected graph.
+    for (size_t i=0; i<mg->vex_num; ++i) {
+        deep_first_search(*mg, i, visited, visit_func);
+    }
     cr;
     printContainer(visited, "visited: ");
+
     delete mg;
 }
 
